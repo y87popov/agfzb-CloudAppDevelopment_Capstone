@@ -6,6 +6,44 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <body>
+
+
+    <!--Add a nav bar here -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Dealership Review</a>
+        <a class="navbar-brand"  href="{% url 'djangoapp:about' %}">About Us</a>
+        <a class="navbar-brand"  href="{% url 'djangoapp:contact' %}">Contact Us</a>
+        </div>
+    
+
+<ul class="nav navbar-nav navbar-right">
+    
+    {% if user.is_authenticated %}
+    
+            <li>
+                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Username" name="username" >
+                        <input type="password" class="form-control" placeholder="Password" name="psw" >
+                        <button class="btn btn-primary" type="submit">Login</button>
+                        
+                    </div>
+                </form>
+            </li>
+            {% endif %}
+</ul>
+</div>
+</div>
+</div>
+</nav>
     <!--Add a registration form here -->
     {% if user.is_authenticated %}
     <div class="rightalign">
@@ -19,15 +57,28 @@
     {% else %}
     <div class="rightalign">
         <div class="dropdown">
-            <form action="{% url 'djangoapp:registration' %}" method="get">
-                <input class="dropbtn"  type="submit" value="Visitor">
-                <div class="dropdown-content">
-                    <a href="{% url 'djangoapp:registration' %}">Signup</a>
-                    <a href="{% url 'djangoapp:login' %}">Login</a>
+            <form action="{% url 'djangoapp:registration' %}" method="post">
+                <div class="container">
+                  <h1>Sign Up</h1>
+                  <hr>
+                  <label for="username"><b>User Name</b></label>
+                  <input type="text" placeholder="Enter User Name: " name="username" required>
+                  <hr>
+                  <label for="firstname"><b>First Name</b></label>
+                  <input type="text" placeholder="Enter First Name: " name="firstname" required>
+                  <hr>
+                  <label for="lastname"><b>Last Name</b></label>
+                  <input type="text" placeholder="Enter Last Name: " name="lastname" required>
+                  <hr>
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password: " name="psw" required>
+                  <hr>
+                  <div>
+                      {% csrf_token %}
+                      <button class="button" type="submit">Sign Up</button>
+                  </div>
                 </div>
-            </form>
-        </div>
-    </div>
+              </form>
 {% endif %}
 
 
