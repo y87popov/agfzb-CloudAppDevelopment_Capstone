@@ -3,7 +3,7 @@ import json
 from .models import CarDealer
 # import related models here
 from requests.auth import HTTPBasicAuth
-from views.py import get_dealers_from_cf
+
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
@@ -55,7 +55,7 @@ def get_dealers_from_cf(url, **kwargs):
 
     if json_result:
         # Get the row list in JSON as dealers
-        dealers = json_result["rows"]
+        dealers=json_result["body"]
         # For each dealer object
         for dealer in dealers:
             # Get its content in `doc` object
