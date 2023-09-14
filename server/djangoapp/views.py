@@ -8,8 +8,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
 import logging
-from .restapis import  get_dealers_from_cf
-
+from .restapis import get_dealers_from_cf 
+#from .restapis import get_dealers_from_cf, get_dealer_by_id_from_cf, get_dealer_reviews_from_cf, post_request  
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
