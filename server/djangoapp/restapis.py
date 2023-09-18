@@ -1,6 +1,6 @@
 import requests
 import json
-from .models import CarDealer
+from .models import CarDealer, DealerReview
 # import related models here
 from requests.auth import HTTPBasicAuth
 
@@ -13,7 +13,7 @@ from requests.auth import HTTPBasicAuth
 def get_request(url, **kwargs):
     
     # If argument contain API KEY
-    api_key = kwargs.get("vZM04h-l3TxMzZgixfuiaZlszHWyri1PoNlWGL3wMNrn")
+    api_key = kwargs.get("KIepUqkGJn2eEF2C3USaFGVKMIqYEYUC_ya-tMs6JiAc")
     print("GET from {} ".format(url))
     try:
         if api_key:
@@ -39,7 +39,15 @@ def get_request(url, **kwargs):
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
-
+def post_request(url, payload, **kwargs):
+    print(kwargs)
+    print("POST to {} ".format(url))
+    print(payload)
+    response = requests.post(url, params=kwargs, json=payload)
+    status_code = response.status_code
+    print("With status {} ".format(status_code))
+    json_data = json.loads(response.text)
+    return json_data
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
 # def get_dealers_from_cf(url, **kwargs):

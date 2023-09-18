@@ -106,7 +106,7 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://85b92228-a36b-403b-b65a-acb463cb195c-bluemix.cloudantnosqldb.appdomain.cloud/api/dealerships"
+        url = "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/IBM-Course-Yordan_YordansSpace/actions/dealership-package/get-dealership"
         dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
