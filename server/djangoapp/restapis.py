@@ -8,6 +8,30 @@ from requests.auth import HTTPBasicAuth
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
+def get_dealerships(request):
+    if request.method == "GET":
+        context = {}
+
+        state = request.GET.get("st")
+        dealerId = request.GET.get("dealerId")
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/IBM-Course-Yordan_YordansSpace/dealership-package/get-dealership"
+
+        try:
+            if state:
+                dealerships = get_dealers_from_cf(url, st=state)
+            elif dealerId:
+                dealerships = get_dealers_from_cf(url, dealerId=dealerId)
+            else:
+                dealerships = get_dealers_from_cf(url)
+        except Exception as e:
+            # Handle the error and set dealerships to an empty list or display an error message
+            dealerships = []
+            context["error"] = f"An error occurred while fetching dealerships: {e}"
+
+        context["dealership_list"] = dealerships
+        print(context["dealership_list"])
+
+        return render(request, "djangoapp/index.html", context=context)
 
 
 def get_request(url, **kwargs):
