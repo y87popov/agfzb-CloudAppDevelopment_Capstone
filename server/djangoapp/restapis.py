@@ -35,8 +35,7 @@ def get_dealerships(request):
 
 
 def get_request(url, **kwargs):
-    
-    # If argument contain API KEY
+     # If argument contain API KEY
     api_key = kwargs.get("KIepUqkGJn2eEF2C3USaFGVKMIqYEYUC_ya-tMs6JiAc")
     print("GET from {} ".format(url))
     try:
@@ -77,15 +76,13 @@ def post_request(url, payload, **kwargs):
 # def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
+
+
 def get_dealers_from_cf(url, **kwargs):
-
     results = []
-
     # Call get_request with a URL parameter
-
     json_result = get_request(url)
-
-    
+    print("\nJSON RESULT",json_result)
 
     if json_result and "body" in json_result:
 
@@ -93,16 +90,10 @@ def get_dealers_from_cf(url, **kwargs):
 
         dealerships = json_result["body"]
 
-        
-
         for dealer in dealerships:
 
             if "doc" in dealer and "address" in dealer["doc"]:
-
                 dealer_doc = dealer
-
-                
-
                 # Create a CarDealer object with values from the dealer document
 
                 dealer_obj = CarDealer(
@@ -122,14 +113,11 @@ def get_dealers_from_cf(url, **kwargs):
                     zip=dealer_doc.get("zip")
 
                 )
-
-                
-
                 results.append(dealer_obj)
-
-    
-
     return results
+
+
+
 
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
