@@ -99,7 +99,7 @@ def get_dealers_from_cf(url, **kwargs):
 
             if "doc" in dealer and "address" in dealer["doc"]:
 
-                dealer_doc = dealer["doc"]
+                dealer_doc = dealer
 
                 
 
