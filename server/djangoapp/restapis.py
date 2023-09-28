@@ -84,19 +84,19 @@ def get_dealers_from_cf(url, **kwargs):
     json_result = get_request(url)
     print("\nJSON RESULT",json_result)
 
-    if json_result and "body" in json_result:
+    if json_result:
 
         # Get the list of dealerships from the response
 
-        dealerships = json_result["body"]
+        dealerships = json_result
 
         for dealer in dealerships:
 
-            if "doc" in dealer and "address" in dealer["doc"]:
-                dealer_doc = dealer
+            
+            dealer_doc = dealer
                 # Create a CarDealer object with values from the dealer document
 
-                dealer_obj = CarDealer(
+            dealer_obj = CarDealer(
 
                     address=dealer_doc.get("address"),
 
@@ -110,10 +110,15 @@ def get_dealers_from_cf(url, **kwargs):
 
                     st=dealer_doc.get("st"),
 
-                    zip=dealer_doc.get("zip")
+                    zip=dealer_doc.get("zip"),
+                    short_name=dealer_doc.get("short_name"),
+                    full_name=dealer_doc.get("full_name"),
+                    state=dealer_doc.get("state"),
+                    _rev=dealer_doc.get("_rev"),
+                    _id=dealer_doc.get("_id")
 
-                )
-                results.append(dealer_obj)
+            )
+            results.append(dealer_obj)
     return results
 
 
