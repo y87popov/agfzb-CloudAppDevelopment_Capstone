@@ -113,14 +113,14 @@ def get_dealerships(request):
 # Create a `get_dealer_details` view to render the reviews of a dealer
 # def get_dealer_details(request, dealer_id):
 # ...
-def get_dealer_details(request, id):
+def get_dealer_details(request):
     if request.method == "GET":
         context = {}
-        dealer_url = "get-dealerships endpoint"
-        dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+        dealer_url = "https://u87ypopov-3000.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
+        dealer = get_dealers_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
     
-        review_url = "get-reviews endpoint"
+        review_url = "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/IBM-Course-Yordan_YordansSpace/actions/dealership-package/get-review"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
         context["reviews"] = reviews
