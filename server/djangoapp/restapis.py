@@ -34,6 +34,25 @@ def get_dealerships(request):
         return render(request, "djangoapp/index.html", context=context)
 
 
+
+
+def get_dealer_details(request, id):
+    if request.method == "GET":
+        context = {}
+        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/IBM-Course-Yordan_YordansSpace/dealership-package/get-dealership"
+        dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+        context["dealer"] = dealer
+    
+        review_url = "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/IBM-Course-Yordan_YordansSpace/actions/dealership-package/get-review"
+        reviews = get_dealer_reviews_from_cf(review_url, id=id)
+        print(reviews)
+        context["reviews"] = reviews
+        
+        return render(request, 'djangoapp/dealer_details.html', context)
+
+
+
+
 def get_request(url, **kwargs):
      # If argument contain API KEY
     api_key = kwargs.get("KIepUqkGJn2eEF2C3USaFGVKMIqYEYUC_ya-tMs6JiAc")
