@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
@@ -42,7 +29,7 @@ urlpatterns = [
 
     # path for dealer reviews view
     path(route='get_dealer_details/', view=views.get_dealer_details, name='get_dealer_details'),
-
+    
     # path for add a review view
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

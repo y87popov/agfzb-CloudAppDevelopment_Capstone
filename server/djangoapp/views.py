@@ -106,7 +106,7 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://u87ypopov-3000.theiadocker-3-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
+        url = "https://u87ypopov-3000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
         dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
@@ -116,11 +116,11 @@ def get_dealerships(request):
 def get_dealer_details(request):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://u87ypopov-3000.theiadocker-3-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
+        dealer_url = "https://u87ypopov-3000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/dealerships/get"
         dealer = get_dealers_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
-    
-        review_url = "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/IBM-Course-Yordan_YordansSpace/actions/dealership-package/get-review"
+                      
+        review_url = "https://u87ypopov-5000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/api/get_reviews"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
         context["reviews"] = reviews
@@ -129,6 +129,7 @@ def get_dealer_details(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
+
 
 
 
