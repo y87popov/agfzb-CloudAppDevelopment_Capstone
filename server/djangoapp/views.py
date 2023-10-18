@@ -117,7 +117,7 @@ def get_dealer_details(request):
         dealer = get_dealers_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
                       
-        review_url = "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/IBM-Course-Yordan_YordansSpace/actions/dealership-package/get-review"
+        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/IBM-Course-Yordan_YordansSpace/dealership-package/get-review"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
         context["reviews"] = reviews
