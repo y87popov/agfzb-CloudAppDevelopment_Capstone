@@ -3,6 +3,11 @@ import json
 from .models import CarDealer, DealerReview
 # import related models here
 from requests.auth import HTTPBasicAuth
+from requests.auth import HTTPBasicAuth
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions
+
 
 
 # Create a `get_request` to make HTTP GET requests
@@ -10,7 +15,9 @@ from requests.auth import HTTPBasicAuth
 #                                     auth=HTTPBasicAuth('apikey', api_key))
 
 def get_request(url, **kwargs):
-     # If argument contain API KEY
+    
+    response = None
+    # If argument contain API KEY
     api_key = kwargs.get("KIepUqkGJn2eEF2C3USaFGVKMIqYEYUC_ya-tMs6JiAc")
     print("GET from {} ".format(url))
     try:
