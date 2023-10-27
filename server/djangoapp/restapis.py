@@ -128,7 +128,7 @@ def get_dealer_by_id_from_cf(url, id):
         dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],
                                 id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"], full_name=dealer_doc["full_name"],
                                 
-                                st=dealer_doc["st"], zip=dealer_doc["zip"])
+                                st=dealer_doc["st"], zip=dealer_doc["zip"],  _id=dealer_doc["_id"],  _rev=dealer_doc["_rev"],  state=dealer_doc["state"], short_name=dealer_doc["short_name"] )
     return dealer_obj
  
 
