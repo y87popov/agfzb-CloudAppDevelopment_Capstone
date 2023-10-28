@@ -11,6 +11,19 @@
 
 </head>
     <body>
+    <!--Add a nav bar here -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Home</a>
+    
+        <a class="navbar-brand"  href="{% url 'djangoapp:about' %}">About Us</a>
+        <a class="navbar-brand"  href="{% url 'djangoapp:contact' %}">Contact Us</a>
+        </div>
+    
+
+
+
     <!--Add review form here -->
     <div class="container-fluid"> 
 
@@ -70,7 +83,7 @@
     
                       <label for="purchasedate"><b>Select Your Purchase Date: </b></label> 
     
-                      <input class="date-own form-control" style="width: 300px;" type="text" name="purchasedate" id="purchasedate"> 
+                      <input type="date" style="width: 300px;" type="text" name="purchasedate" id="purchasedate"> 
     
                   </div> 
     
